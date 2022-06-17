@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block block_title %} Profile page {% endblock %}
+{% block block_body %}
+<h1>I am Profile Page </h1>
+
+
+{% if user.user_profile %}
+<img src="/media/{{ user.user_profile.profile_pic }}" alt="" class="img-fluid rounded-circle d-block" width="100">
+<a href="{% url 'App_Login:updatepropic' %}" class="btn btn-success btn-sm">Update Profile Pic</a>
+{% else %}
+<img src="/media//profile_pics/no_pic.jpg" alt="" class="img-fluid rounded-circle d-block" width="100">
+<a href="{% url 'App_Login:addpropic' %}" class="btn btn-info btn-sm">Add a Profile Pic</a>
+{% endif %}
+
+
+{% if user.is_authenticated %}
+<ul>
+    <li>{{ user.first_name }} {{ user.last_name}}</li>
+    <li>{{ user.username }}</li>
+    <li>{{ user.email }}</li>
+</ul>
+
+<a href="{% url 'App_Login:update' %}" class="btn btn-warning btn-sm">Update</a>
+
+{% endif %}
+
+{% endblock %}

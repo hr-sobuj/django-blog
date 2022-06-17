@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block block_title %} Registration page {% endblock %}
+{% block block_body %}
+<h1>I am change password Page </h1>
+
+
+<form method="POST" enctype="multipart/form-data">
+    {{ form|crispy }}
+    {% csrf_token %}
+    <input type="submit" value="Publish" class="btn btn-info btn-sm" onclick="myFunction()">
+</form>      
+
+
+<div id="snackbar">
+
+    {% if flag %}
+    <span> Password Changed successfully</span>
+    {% else %}
+    <span>Operation Failed</span>
+    {% endif %}
+
+</div>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 100000);
+}
+</script>
+{% endblock %}

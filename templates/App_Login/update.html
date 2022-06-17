@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block block_title %} Registration page {% endblock %}
+{% block block_body %}
+<h1>I am update Page </h1>
+
+
+<form method="POST">
+    {{ form|crispy }}
+    {% csrf_token %}
+    <input type="submit" value="Save" class="btn btn-info btn-sm">
+</form>
+
+{% endblock %}

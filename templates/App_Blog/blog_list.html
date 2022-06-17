@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load custom_filter %}
+{% load crispy_forms_tags %}
+
+{% block block_title %} Blog List {% endblock %}
+{% block block_body %}
+<h1>I am blog page </h1>
+
+
+{% for row in blog_list %}
+<h3>{{ row.blog_title }}</h3>
+<span>{{ row.publish_date }}</span>
+<div class="row p-3">
+    <div class="col-4">
+        <img src="/media/{{ row.blog_image }}" class="img-fluid" width="300" alt="">
+    </div>
+    <div class="col-8">
+        <p>{{ row.blog_content|custom_filter|linebreaks }}</p>
+        <a href="{% url 'App_Blog:blog_details' slug=row.slug %}" class="btn btn-success btn-sm">Read More</a>
+        <p>{{ row.author }}</p>
+        <p>{{row.liked_blog.count }} Likes | {{row.blog_comment.count }} Comments </p>
+    </div>
+</div>
+
+<hr>
+{% endfor %}
+
+{% endblock %}

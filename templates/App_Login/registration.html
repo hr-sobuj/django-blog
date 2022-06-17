@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block block_title %} Registration page {% endblock %}
+{% block block_body %}
+<h1>I am Registration Page </h1>
+
+<!-- {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success'%}
+                <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+            {% elif message.tags == 'info' %}
+                <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+            {% elif message.tags == 'warning' %}
+                <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+            {% elif message.tags == 'error' %}
+                <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+            {% endif %}
+        {% endfor %}
+    {% endif %} -->
+
+<form method="POST">
+    {{ registration_form|crispy }}
+    {% csrf_token %}
+    <input type="submit" value="Registration" class="btn btn-info btn-sm">
+</form>
+
+{% endblock %}
